@@ -1,0 +1,13 @@
+/** style.css
+ * 
+ * Theme Name:	We Love Lichfield Fund
+ * Theme URI:	http://welovelichfield.com
+ * Description:	A WordPress Theme for We Love Lichfield Fund, based on Twitter Bootstrap
+ * Author:		Philip John
+ * Author URI:	http://philipjohn.co.uk
+ * Version:		0.1
+ * Template: the-bootstrap
+ */
+ 
+ /* The bit that should really be unnecessary */
+ @import url('../the-bootstrap/style.css');
