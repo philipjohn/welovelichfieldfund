@@ -21,4 +21,6 @@ Based on Twitter Bootstrap, this theme provides a pretty but basic responsive Wo
 * Removed comments from pages
 
 = 0.4 =
-* Added Supporters custom post type 
+* Added Supporters custom post type
+* Tweaked edit page for Supporters CPT
+* Added URL metabox to Supporters edit page 
