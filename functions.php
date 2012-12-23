@@ -247,11 +247,3 @@ Class We_Love_Lichfield_Fund {
 	}
 }
 new We_Love_Lichfield_Fund;
-
-
-
-
-
-
-
-
