@@ -9,15 +9,23 @@ $supporters_args = array(
 
 $supporters = new WP_Query($supporters_args);
 
-if ($supporters->have_posts()): while ($supporters->have_posts()): $supporters->the_post();
+if ($supporters->have_posts()):
 
-	$html = '<div id="'.get_the_ID().'" class="'.get_post_class('supporter').'">';
-	$html .= '<a href="'.get_permalink().'">';
-	$html .= get_the_post_thumbnail(get_the_ID(), 'thumbnail', array('class'=>'supporter-thumb'));
-	$html .= '<span>'.get_the_title().'</span></a></div>';
+	$html = '<ul class="thumbnails">';
+	while ($supporters->have_posts()): $supporters->the_post();
+	
+		$link = get_post_meta(get_the_ID(), 'supporters_url', true);
+		$html .= '<li id="supporter-'.get_the_ID().'" class="'.implode(' ', get_post_class('span4')).'">';
+		$html .= '<div class="thumbnail">';
+		$html .= '<a href="'.$link.'">';
+		$html .= get_the_post_thumbnail(get_the_ID(), 'medium', array('class'=>'supporter-thumb','width'=>'','height'=>''));
+		$html .= '</a><h3>'.get_the_title().'</h3><p>'.get_the_excerpt().'</p></div></li>';
+	
+	endwhile;
+	$html .= '</ul>';
 	echo $html;
-
-endwhile; else:
+	
+else:
 
 	echo '<h1>Not found</h1><p>Sorry, no supporters were found.</p>';
 

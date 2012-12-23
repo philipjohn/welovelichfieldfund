@@ -52,6 +52,10 @@ Class We_Love_Lichfield_Fund {
 		add_filter( 'comments_template', array($this, 'remove_comments_template_on_pages'), 11 );
 		add_filter('default_hidden_meta_boxes', array($this, 'hide_meta_lock'), 10, 2);
 		add_filter('gettext', array($this, 'custom_enter_title'));
+		add_filter( 'post_thumbnail_html', array($this, 'remove_thumbnail_dimensions'), 10 );
+		add_filter( 'image_send_to_editor', array($this, 'remove_thumbnail_dimensions'), 10 );
+		remove_filter( 'get_the_excerpt', 'the_bootstrap_custom_excerpt_more', 20 );
+		remove_filter( 'excerpt_more', 'the_bootstrap_auto_excerpt_more', 20 );
 	}
 	
 	/**
@@ -244,6 +248,15 @@ Class We_Love_Lichfield_Fund {
 		/* If there is no new meta value but an old value exists, delete it. */
 		elseif ( '' == $new_meta_value && $meta_value )
 		delete_post_meta( $post_id, $meta_key, $meta_value );
+	}
+	
+	/**
+	 * Remove dimension attributes from thumbnails
+	 * @since 0.4
+	 */
+	function remove_thumbnail_dimensions( $html ) {
+		$html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
+		return $html;
 	}
 }
 new We_Love_Lichfield_Fund;
